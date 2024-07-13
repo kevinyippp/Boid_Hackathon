@@ -11,6 +11,8 @@
 
 class Game {
 private:
+	sf::Texture texture;
+	sf::Sprite backgroundSprite;
 	sf::RenderWindow _window;
 	int _window_width;
 	int _window_height;

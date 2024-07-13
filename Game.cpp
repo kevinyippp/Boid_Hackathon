@@ -9,6 +9,23 @@
 Game::Game()
 {
 	//this->boidsSize = rand() % 10 - 3;
+
+	//background texture
+	
+	texture.loadFromFile("background.jpg");
+
+	//background sprite
+	sf::Vector2u textureSize = texture.getSize();
+	sf::Vector2u windowSize = _window.getSize();
+	//float scalex = static_cast<float>(windowsize.x) / texturesize.x;
+	//float scaley = static_cast<float>(windowsize.y) / texturesize.y;
+
+	backgroundSprite.setTexture(texture);
+	backgroundSprite.setScale(.5, .5);
+
+
+
+
 	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
 	this->_window_height = desktop.height;
 	this->_window_width = desktop.width;
@@ -19,7 +36,10 @@ Game::Game()
 // Run the simulation. Run creates the boids that we'll display, checks for user
 // input, and updates the view
 void Game::Run()
-{
+{	
+	const float fpsLimit = 30.0f;
+	const sf::Time timePerFrame = sf::seconds(1.0f / fpsLimit);
+
 	for (int i = 0; i < BOID_AMOUNT; i++) {
 		createBoid(_window_width / 2, _window_height / 2, false, sf::Color::Green, sf::Color::Blue);
 	}
@@ -240,6 +260,10 @@ void Game::Render(sf::Text fpsText, float fps, sf::Text preyText, sf::Text predT
 				sf::Text dSepText, sf::Text dAliText, sf::Text dCohText, sf::Text dSepWText, sf::Text dAliWText, sf::Text dCohWText)
 {
 	_window.clear();
+
+	//draw background
+
+	_window.draw(backgroundSprite);
 
 	//Updating and drawing text can possibly be put in it's own function as well
 	fpsText.setString("Frames per Second: " + to_string(int(fps + 0.5)));

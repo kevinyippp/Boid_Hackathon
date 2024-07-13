@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\limou\\source\\repos\\Boid_Hackathon\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DF3AF91F-D2DB-456A-821D-A3A20483ECF3}|SFML_Boi.vcxproj|C:\\Users\\limou\\source\\repos\\Boid_Hackathon\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DF3AF91F-D2DB-456A-821D-A3A20483ECF3}|SFML_Boi.vcxproj|solutionrelative:Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DF3AF91F-D2DB-456A-821D-A3A20483ECF3}|SFML_Boi.vcxproj|C:\\Users\\limou\\source\\repos\\Boid_Hackathon\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{DF3AF91F-D2DB-456A-821D-A3A20483ECF3}|SFML_Boi.vcxproj|solutionrelative:Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF3AF91F-D2DB-456A-821D-A3A20483ECF3}|SFML_Boi.vcxproj|C:\\Users\\limou\\source\\repos\\Boid_Hackathon\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DF3AF91F-D2DB-456A-821D-A3A20483ECF3}|SFML_Boi.vcxproj|solutionrelative:Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,17 +22,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Game.h",
+              "DocumentMoniker": "C:\\Users\\limou\\source\\repos\\Boid_Hackathon\\Game.h",
+              "RelativeDocumentMoniker": "Game.h",
+              "ToolTip": "C:\\Users\\limou\\source\\repos\\Boid_Hackathon\\Game.h",
+              "RelativeToolTip": "Game.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-07-13T20:56:50.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\Users\\limou\\source\\repos\\Boid_Hackathon\\Game.cpp",
+              "RelativeDocumentMoniker": "Game.cpp",
+              "ToolTip": "C:\\Users\\limou\\source\\repos\\Boid_Hackathon\\Game.cpp",
+              "RelativeToolTip": "Game.cpp",
+              "ViewState": "AQIAADgAAAAAAAAAAAASwEwAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-13T20:55:17.709Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Main.cpp",
               "DocumentMoniker": "C:\\Users\\limou\\source\\repos\\Boid_Hackathon\\Main.cpp",
               "RelativeDocumentMoniker": "Main.cpp",
-              "ToolTip": "C:\\Users\\limou\\source\\repos\\Boid_Hackathon\\Main.cpp*",
-              "RelativeToolTip": "Main.cpp*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAKAAAA",
+              "ToolTip": "C:\\Users\\limou\\source\\repos\\Boid_Hackathon\\Main.cpp",
+              "RelativeToolTip": "Main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-13T18:28:17.406Z",
               "EditorCaption": ""

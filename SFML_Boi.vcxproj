@@ -139,10 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Boid.cpp" />
+    <ClCompile Include="Flock.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Pvector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Boid.h" />
+    <ClInclude Include="Flock.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Header\DNS_Laws_Of_Physics.hpp" />
+    <ClInclude Include="Pvector.h" />
+    <ClInclude Include="WorkQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

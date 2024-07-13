@@ -3,7 +3,7 @@
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 
-#define BOID_AMOUNT 50
+#define BOID_AMOUNT 300
 
 // Construct window using SFML
 Game::Game()
@@ -21,7 +21,7 @@ Game::Game()
 void Game::Run()
 {
 	for (int i = 0; i < BOID_AMOUNT; i++) {
-		createBoid(_window_width / 2, _window_height / 2, false, sf::Color::Green, sf::Color::Blue);
+		createBoid(0, 0, false, sf::Color::Green, sf::Color::Blue);
 	}
 
 	//Whole block of text can probably simplified in a function as well in order to remove redundancy
@@ -29,66 +29,81 @@ void Game::Run()
 	font.loadFromFile("consola.ttf");
 
 	sf::Text fpsText("Frames per Second: ", font);
-	fpsText.setFillColor (sf::Color::White);
+	fpsText.setFillColor(sf::Color::White);
 	fpsText.setCharacterSize(12);
 	fpsText.setPosition(_window_width - 162, 0);
 
 	sf::Text preyText("Total Prey Count: " + to_string(flock.preyCount()), font);
-	preyText.setFillColor (sf::Color::White);
+	preyText.setFillColor(sf::Color::White);
 	preyText.setCharacterSize(12);
 	preyText.setPosition(_window_width - 155, 12);
 
 	sf::Text predText("Total Predator Count: " + to_string(flock.predCount()), font);
-	predText.setFillColor (sf::Color::White);
+	predText.setFillColor(sf::Color::White);
 	predText.setCharacterSize(12);
 	predText.setPosition(_window_width - 183, 24);
 
 	sf::Text boidText("Total Boid Count: " + to_string(flock.getSize()), font);
-	boidText.setFillColor (sf::Color::White);
+	boidText.setFillColor(sf::Color::White);
 	boidText.setCharacterSize(12);
 	boidText.setPosition(_window_width - 155, 36);
 	
 	sf::Text dSepText("Separation Amount: " + to_string(flock.getBoid(0).getDesSep()), font);
-	dSepText.setFillColor (sf::Color::White);
+	dSepText.setFillColor(sf::Color::White);
 	dSepText.setCharacterSize(12);
 	dSepText.setPosition(_window_width - 162, 60);
 
 	sf::Text dAliText("Alignment Amount: " + to_string(flock.getBoid(0).getDesAli()), font);
-	dAliText.setFillColor (sf::Color::White);
+	dAliText.setFillColor(sf::Color::White);
 	dAliText.setCharacterSize(12);
 	dAliText.setPosition(_window_width - 155, 72);
 
 	sf::Text dCohText("Cohesion Amount: " + to_string(flock.getBoid(0).getDesCoh()), font);
-	dCohText.setFillColor (sf::Color::White);
+	dCohText.setFillColor(sf::Color::White);
 	dCohText.setCharacterSize(12);
 	dCohText.setPosition(_window_width - 148, 84);
 
 	sf::Text dSepWText("Separation Weight: " + to_string(flock.getBoid(0).getSepW()), font);
-	dSepWText.setFillColor (sf::Color::White);
+	dSepWText.setFillColor(sf::Color::White);
 	dSepWText.setCharacterSize(12);
 	dSepWText.setPosition(_window_width - 162, 108);
 
 	sf::Text dAliWText("Alignment Weight: " + to_string(flock.getBoid(0).getAliW()), font);
-	dAliWText.setFillColor (sf::Color::White);
+	dAliWText.setFillColor(sf::Color::White);
 	dAliWText.setCharacterSize(12);
 	dAliWText.setPosition(_window_width - 155, 120);
 
 	sf::Text dCohWText("Cohesion Weight: " + to_string(flock.getBoid(0).getCohW()), font);
-	dCohWText.setFillColor (sf::Color::White);
+	dCohWText.setFillColor(sf::Color::White);
 	dCohWText.setCharacterSize(12);
 	dCohWText.setPosition(_window_width - 148, 132);
 
 
 	// Clock added to calculate frame rate, may cause a small amount of slowdown?
 	sf::Clock clock;
+	const float frameRate = 60.0f; // Desired frame rate
+	const float frameTime = 1.0f / frameRate;
 
-	while (_window.isOpen()) {
-		float currentTime = clock.restart().asSeconds();
-		float fps = 1 / currentTime; // 1 / refresh time = estimate of fps
-		HandleInput();
-		Render(fpsText, fps, preyText, predText, boidText, 
-				dSepText, dAliText, dCohText, dSepWText, dAliWText, dCohWText);
-	}
+
+	//while (_window.isOpen()) {
+	//	float currentTime = clock.restart().asSeconds();
+	//	float fps = 1 / currentTime; // 1 / refresh time = estimate of fps
+	//	HandleInput();
+	//	Render(fpsText, fps, preyText, predText, boidText, 
+	//			dSepText, dAliText, dCohText, dSepWText, dAliWText, dCohWText);
+	//}
+
+	 while (_window.isOpen()) {
+        float elapsedTime = clock.getElapsedTime().asSeconds();
+        if (elapsedTime < frameTime) {
+            sf::sleep(sf::seconds(frameTime - elapsedTime));
+        }
+        clock.restart();
+
+        HandleInput();
+        Render(fpsText, frameRate, preyText, predText, boidText, 
+               dSepText, dAliText, dCohText, dSepWText, dAliWText, dCohWText);
+    }
 }
 
 void Game::HandleInput()
@@ -207,8 +222,17 @@ void Game::HandleInput()
 
 void Game::createBoid(float x, float y, bool predStatus, sf::Color fillColor, sf::Color outlineColor)
 {
-	int size = rand() % 10 - 2;
+	int size;
+	if (predStatus) {
+		size = 20;
+	}
+	else {
+		size = 12; 
+	}
+
+
 	Boid b(x, y, predStatus);
+	b.velocity = Pvector(0.1f, 0.1f);
 	sf::CircleShape shape(size, 3);
 	shape.setPosition(x, y);
 	shape.setFillColor(fillColor);

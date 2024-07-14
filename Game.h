@@ -30,6 +30,7 @@ private:
 	// Refactored duplicate code in it's own function to simplify the creation of boids
 	void createBoid(float x, float y, bool predStatus, sf::Color fillColor, sf::Color outlineColor);
 	void HandleInput();
+	void checkCollisions();
 
 public:
 	// For console instructions

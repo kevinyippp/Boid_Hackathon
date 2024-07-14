@@ -12,6 +12,12 @@ Boid Flock::getBoid(int i) { return flock[i]; }
 
 void Flock::addBoid(Boid b) { flock.push_back(b); }
 
+void Flock::removeBoid(int index) {
+	if (index >= 0 && index < flock.size()) {
+		flock.erase(flock.begin() + index);
+	}
+}
+
 // Runs the run function for every boid in the flock checking against the flock
 // itself. Which in turn applies all the rules to the flock.
 void Flock::flocking()

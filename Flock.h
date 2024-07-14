@@ -21,6 +21,7 @@ public:
 	
 	// Mutator Functions
 	void addBoid(Boid b);
+	void removeBoid(int index); 
 	void flocking();
 
 	//For accessing values and modifying values in Game.cpp

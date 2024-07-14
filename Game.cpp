@@ -21,7 +21,7 @@ Game::Game()
 	//float scaley = static_cast<float>(windowsize.y) / texturesize.y;
 
 	backgroundSprite.setTexture(texture);
-	backgroundSprite.setScale(.5, .5);
+	backgroundSprite.setScale(2, 2);
 
 
 
@@ -30,11 +30,13 @@ Game::Game()
 	this->_window_height = desktop.height;
 	this->_window_width = desktop.width;
 	this->_window.create(sf::VideoMode(_window_width, _window_height, desktop.bitsPerPixel), "Boids", sf::Style::None);
-	printInstructions();
+	//printInstructions();
 }
 
 // Run the simulation. Run creates the boids that we'll display, checks for user
 // input, and updates the view
+
+
 void Game::Run()
 {	
 	const float fpsLimit = 30.0f;
@@ -124,6 +126,21 @@ void Game::Run()
         Render(fpsText, frameRate, preyText, predText, boidText, 
                dSepText, dAliText, dCohText, dSepWText, dAliWText, dCohWText);
     }
+}
+
+
+void Game::checkCollisions() {
+	for (int i = 0; i < flock.getSize(); i++) {
+		if (flock.getBoid(i).predatorStatus) {
+			for (int j = 0; j < flock.getSize(); j++) {
+				if (!flock.getBoid(j).predatorStatus && flock.getBoid(i).location.distance(flock.getBoid(j).location) < 15.0f) {
+					flock.removeBoid(j);
+					shapes.erase(shapes.begin() + j);
+					break;
+				}
+			}
+		}
+	}
 }
 
 void Game::HandleInput()
@@ -369,18 +386,6 @@ void Game::printInstructions()
 {
 	cout << string(100, '\n');
 	cout << "--------------Instructions--------------" << endl;
-	cout << "Press 'Q' to increase Separation Amount" << endl;
-	cout << "Press 'A' to decrease Separation Amount" << endl;
-	cout << "Press 'W' to increase Alignment Amount" << endl;
-	cout << "Press 'S' to decrease Alignment Amount" << endl;
-	cout << "Press 'E' to increase Cohesion Amount" << endl;
-	cout << "Press 'D' to decrease Cohesion Amount" << endl;
-	cout << "Press 'I' to increase Separation Weight" << endl;
-	cout << "Press 'J' to decrease Separation Weight" << endl;
-	cout << "Press 'O' to increase Alignment Weight" << endl;
-	cout << "Press 'K' to decrease Alignment Weight" << endl;
-	cout << "Press 'P' to increase Alignment Weight" << endl;
-	cout << "Press 'L' to decrease Alignment Weight" << endl;
 	cout << "Press 'Space' to add a prey Boid in a random spot" << endl;
 	cout << "Left Click to add a predator Boid where you clicked" << endl;
 	cout << "Press 'F5' to restart the simulation" << endl;
